@@ -2,10 +2,9 @@ package EksamenProgrammeringBackend.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import java.util.Date;
 
 @Entity
 @Getter
@@ -20,12 +19,12 @@ public class Resultat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DeltagerID", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Ignore Hibernate specific properties
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Deltager deltager;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DisciplinID", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Ignore Hibernate specific properties
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Disciplin disciplin;
 
     @Column(name = "Resultattype")
@@ -39,5 +38,9 @@ public class Resultat {
     private String resultatværdi;
 
     public Resultat() {
+    }
+
+    public void setId(Long resultatID) {
+        this.resultatID = resultatID;
     }
 }

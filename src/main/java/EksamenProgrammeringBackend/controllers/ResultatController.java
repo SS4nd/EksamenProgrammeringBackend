@@ -40,6 +40,18 @@ public class ResultatController {
         Resultat createdResultat = resultatService.saveResultat(resultat);
         return new ResponseEntity<>(createdResultat, HttpStatus.CREATED);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Resultat> updateResultat(@PathVariable Long id, @RequestBody Resultat updatedResultat) {
+        try {
+            updatedResultat.setId(id);
+            Resultat savedResultat = resultatService.saveResultat(updatedResultat);
+            return new ResponseEntity<>(savedResultat, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteResultat(@PathVariable Long id) {
